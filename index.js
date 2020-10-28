@@ -28,6 +28,9 @@ connection.authenticate().then(() => {
 app.use("/", categoriesController);
 app.use("/", articlesController);
 
+app.get('/', (req, res)=>{
+    res.send("<h1>ROTA PRINCIPAL</h1>")
+})
 
 app.listen(8081, () => {
     console.log("Servidor rodando!");

@@ -1,0 +1,32 @@
+<%- include ('../../partials/header.ejs')%>
+<%- include ('../../partials/navbar.ejs')%>
+
+<div class="container">
+    <hr>
+    <h2>Categorias</h2>
+    <a class="btn btn-sucess" href="/admin/categories/new">Criar Categoria</a>
+    <hr>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Titulo</th>
+                <th>Slug</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <TBody>
+            <% categories.forEach(category => { %>
+            <tr>
+                <th><%= category.id %></th>
+                <th><%= category.title %></th>
+                <th><%= category.slug %></th>
+            </tr>
+            <%  }) %>
+        </TBody>
+    </table>
+</div>
+
+
+
+<%- include ('../../partials/footer.ejs')%>
