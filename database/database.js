@@ -1,8 +1,9 @@
 const Sequelize = require('sequelize');
 
-const connection = new Sequelize('blognode', 'root', '',{
+const connection = new Sequelize('blognode', 'root', '', {
     host: 'localhost',
-    dialect: 'mysql'
+    dialect: 'mysql',
+    timezone: "-03:00"
 });
 
 module.exports = connection;

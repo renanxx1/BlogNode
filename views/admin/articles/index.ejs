@@ -1,0 +1,52 @@
+<%- include ('../../partials/header.ejs')%>
+<%- include ('../../partials/navbar.ejs')%>
+
+<div class="container">
+    <hr>
+    <h2>Artigos</h2>
+    <a class="btn btn-success" href="/admin/articles/new">Criar Novo Artigo</a>
+    <hr>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Titulo</th>
+                <th>Slug</th>
+                <th>Categoria</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <TBody>
+            <% articles.forEach(article => { %>
+            <tr>
+                <td><%= article.id %></td>
+                <td><%= article.title %></td>
+                <td><%= article.slug %></td>
+                <td><%= article.category.title %></td>
+                <td>
+                    <a href="/admin/articles/edit/<%= article.id %>" class="btn btn-warning">Editar</a>
+
+                    <form onsubmit="confirmarDelecao(event, this)" style="display: inline" method="POST"
+                        action="/articles/delete">
+                        <input type="hidden" name="id" value="<%= article.id %>">
+                        <button class="btn btn-danger">Deletar</button>
+                    </form>
+                </td>
+            </tr>
+            <% }) %>
+        </TBody>
+    </table>
+</div>
+
+<script>
+    function confirmarDelecao(event, form) {
+        event.preventDefault();
+        console.log("bloqueio");
+        var decision = confirm("Você quer deletar este artigo?")
+        if (decision) {
+            form.submit();
+        }
+    }
+</script>
+
+<%- include ('../../partials/footer.ejs')%>
