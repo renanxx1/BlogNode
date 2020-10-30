@@ -2,8 +2,8 @@ const express = require("express");
 const router = express.Router();
 
 
-router.get("/articles", (req, res) => {
-    res.send("<h1> Pagina de Artigos </h1>");
+router.get("/admin/articles/new", (req, res) => {
+    res.render("admin/articles/new")
 });
 
 module.exports = router;
