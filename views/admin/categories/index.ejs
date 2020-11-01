@@ -39,7 +39,7 @@
     function confirmarDelecao(event, form) {
         event.preventDefault();
         console.log("bloqueio");
-        var decision = confirm("Você quer deletar esta categoria?")
+        var decision = confirm("ATENÇÃO! TAMBÉM SERÁ DELETADO OS ARTIGOS DESTA CATEGORIA. CONFIRMA?")
         if (decision) {
             form.submit();
         }

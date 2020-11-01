@@ -5,7 +5,9 @@ const Article = require("../articles/Article");
 const slugify = require('slugify');
 
 router.get("/admin/articles", (req, res) => {
-    Article.findAll({ include: [{ model: Category }] }).then(articles => {
+    Article.findAll({
+        include: [{ model: Category }]
+    }).then(articles => {
         res.render("admin/articles/index", { articles: articles })
     })
 })
@@ -70,7 +72,9 @@ router.get("/admin/articles/edit/:id", (req, res) => {
     }
     Article.findByPk(id).then(article => {
         if (article != undefined) {
-            res.render("admin/articles/edit", { article: article })
+            Category.findAll().then(categories => {
+                res.render("admin/articles/edit", { article: article, categories: categories })
+            })
         } else {
             res.redirect("/admin/articles")
         }

@@ -6,7 +6,7 @@
     <h2>Artigos</h2>
     <a class="btn btn-success" href="/admin/articles/new">Criar Novo Artigo</a>
     <hr>
-    <table class="table table-bordered">
+    <table class="table table-bordered table-responsive">
         <thead>
             <tr>
                 <th>ID</th>
@@ -23,10 +23,10 @@
                 <td><%= article.title %></td>
                 <td><%= article.slug %></td>
                 <td><%= article.category.title %></td>
-                <td>
+                <td colspan="6">
                     <a href="/admin/articles/edit/<%= article.id %>" class="btn btn-warning">Editar</a>
 
-                    <form onsubmit="confirmarDelecao(event, this)" style="display: inline" method="POST"
+                    <form  onsubmit="confirmarDelecao(event, this)" method="POST"
                         action="/articles/delete">
                         <input type="hidden" name="id" value="<%= article.id %>">
                         <button class="btn btn-danger">Deletar</button>

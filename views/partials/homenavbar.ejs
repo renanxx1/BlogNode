@@ -1,0 +1,26 @@
+<nav class="navbar-expand-lg navbar navbar-dark bg-primary" style="background-color: #e3f2fd;">
+
+    <a href="/" class="class navbar-brand">
+        BlogNode
+    </a>
+
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+            <a class="nav-link" href="/" >Home</a>
+        </li>
+
+        <% categories.forEach(category => { %>
+
+        <li class="nav-item">
+            <a class="nav-link" href="/category/<%=category.slug%>"> <%=category.title%></a>
+        </li>
+        <%})%>
+
+    </ul>
+    <li class="navbar-nav ml-auto">
+        <a class="nav-link disabled" href="/admin/categories">
+            Painel Administrativo
+        </a> </li>
+
+
+</nav>

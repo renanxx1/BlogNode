@@ -1,11 +1,9 @@
 const express = require("express");
 const Category = require("./Category");
+const Article = require("../articles/Article");
 const router = express.Router();
 const slugify = require("slugify")
 
-router.get("/categories", (req, res) => {
-    res.send("<h1>Rota de categoria</h1>");
-});
 
 router.get('/admin/categories/new', (req, res) => {
     res.render('admin/categories/new');
@@ -39,13 +37,19 @@ router.post("/categories/delete", (req, res) => {
     var id = req.body.id;
     if (id != undefined) {
         if (!isNaN(id)) {
+
             Category.destroy({
                 where: {
                     id: id
                 }
-            }).then(() => {
-                res.redirect("/admin/categories");
-            })
+            },
+                Article.destroy({
+                    where: {
+                        categoryId: id
+                    }
+                })).then(() => {
+                    res.redirect("/admin/categories");
+                })
         } else {
             res.redirect("/admin/categories")
         }
