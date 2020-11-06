@@ -4,9 +4,11 @@ const bodyParser = require('body-parser');
 const connection = require('./database/database');
 const categoriesController = require("./categories/CategoriesController");
 const articlesController = require("./articles/ArticlesController");
+const usersController = require("./users/UserController");
+
+const User = require("./users/User");
 const Article = require("./articles/Article");
 const Category = require("./categories/Category");
-
 
 //view engine
 app.set('view engine', 'ejs');
@@ -27,11 +29,12 @@ connection.authenticate().then(() => {
 
 app.use("/", categoriesController);
 app.use("/", articlesController);
-
+app.use("/", usersController);
 
 app.get('/', (req, res) => {
     Article.findAll({
-        order: [['id', 'DESC']]
+        order: [['id', 'DESC']],
+        limit: 4
     }).then(articles => {
         Category.findAll().then(categories => {
             res.render('index', { articles: articles, categories: categories })
