@@ -5,6 +5,7 @@ const connection = require('./database/database');
 const categoriesController = require("./categories/CategoriesController");
 const articlesController = require("./articles/ArticlesController");
 const usersController = require("./users/UserController");
+const session = require("express-session");
 
 const User = require("./users/User");
 const Article = require("./articles/Article");
@@ -12,6 +13,12 @@ const Category = require("./categories/Category");
 
 //view engine
 app.set('view engine', 'ejs');
+
+//Sessions
+app.use(session({
+    secret: "sessionsecret",
+    cookie: { maxAge: 3000000 }
+}))
 
 //static
 app.use(express.static('public'));
@@ -27,6 +34,10 @@ connection.authenticate().then(() => {
     console.log(error)
 });
 
+app.get("/session", (req, res) => {
+
+})
+
 app.use("/", categoriesController);
 app.use("/", articlesController);
 app.use("/", usersController);
@@ -39,7 +50,6 @@ app.get('/', (req, res) => {
         Category.findAll().then(categories => {
             res.render('index', { articles: articles, categories: categories })
         })
-
     });
 });
 
