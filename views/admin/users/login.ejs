@@ -1,5 +1,4 @@
 <%- include ('../../partials/header.ejs')%>
-<%- include ('../../partials/navbar.ejs')%>
 
 <div class="container">
     <hr>
@@ -7,7 +6,7 @@
         <div class="card-header">
             <h2>Login de Admin</h2>
         </div>
-        <form action="/users/create" method="POST">
+        <form action="/authenticate" method="POST">
             <input class="form-control" name="email" type="email" placeholder="email@expemplo.com"><br>
             <input class="form-control" name="password" type="password" placeholder="*******">
             <button class="btn btn-success btn-block mt-3" type="submit">Logar</button><br>
